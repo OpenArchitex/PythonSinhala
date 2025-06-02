@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import {Button, Container} from "react-bootstrap";
 import styled from "styled-components";
 import coverImage from "../images/coverImage.jpg";
 
@@ -24,6 +24,7 @@ const CoverImage = () => (
           </cite>
         </footer>
       </blockquote>
+      <Button className="mt-5" variant="primary" size="lg" href="/chapters">Browse Chapters</Button>
     </Container>
   </StyledContainer>
 );
