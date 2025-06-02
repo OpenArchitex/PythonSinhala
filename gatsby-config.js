@@ -11,10 +11,11 @@ module.exports = {
   plugins: [
     "gatsby-plugin-image",
     "gatsby-plugin-sitemap",
+    "gatsby-plugin-styled-components",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/images/favicon.svg",
+        icon: "src/images/logo.svg",
       },
     },
     "gatsby-plugin-sharp",
