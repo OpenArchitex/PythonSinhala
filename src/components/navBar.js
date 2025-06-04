@@ -1,13 +1,13 @@
 import React from "react";
-import { Container, Image, Nav, Navbar } from "react-bootstrap";
-import logo from "../images/logo.svg";
+import { Container, Nav, Navbar } from "react-bootstrap";
 import { StaticImage } from "gatsby-plugin-image";
 
 const NavBar = () => (
   <Navbar fixed="top" bg="dark" data-bs-theme="dark" expand="lg">
     <Container className="flex-nowrap" fluid>
       <Navbar.Brand href="/">
-        <StaticImage src={logo} alt="Logo" /> Python Sinhala
+        <StaticImage src="../images/logo.svg" alt="Logo" width={50} /> Python
+        Sinhala
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     </Container>
