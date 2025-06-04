@@ -19,7 +19,7 @@ jobs:
           node-version: '20'
       - name: Create .env file
         run: |
-          touch .env.development
+          touch .env.production
           echo DB_SERVER_ADDRESS=${{ secrets.DB_SERVER_ADDRESS }} >> .env
           echo DB_SERVER_PORT=${{ secrets.DB_SERVER_PORT }} >> .env
           echo DB_USER=${{ secrets.DB_USER }} >> .env
