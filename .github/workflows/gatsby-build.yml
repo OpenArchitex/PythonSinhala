@@ -17,13 +17,14 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '20'
-      - name: Create .env file
-        run: |
-          touch .env.production
-          echo DB_SERVER_ADDRESS=${{ secrets.DB_SERVER_ADDRESS }} >> .env
-          echo DB_SERVER_PORT=${{ secrets.DB_SERVER_PORT }} >> .env
-          echo DB_USER=${{ secrets.DB_USER }} >> .env
-          echo DB_PASSWORD=${{ secrets.DB_PASSWORD }} >> .env
-          echo DB_NAME=${{ secrets.DB_NAME }} >> .env
       - run: npm ci
-      - run: npm run build --if-present
+      - name: Build Gatsby Site
+        env:
+          NODE_ENV: production
+          DB_SERVER_ADDRESS: ${{ secrets.DB_SERVER_ADDRESS }}
+          DB_SERVER_PORT: ${{ secrets.DB_SERVER_PORT }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+        # This will run the build script defined in package.json
+        run: npm run build --if-present
