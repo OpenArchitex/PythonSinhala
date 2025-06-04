@@ -57,13 +57,16 @@ const Chapters = ({ data }) => {
           <Col md={3}>
             <Accordion defaultActiveKey="0">
               {sortedChapters.map(({ node }) => (
-                <Accordion.Item eventKey={node.chapter_number}>
+                <Accordion.Item
+                  eventKey={node.chapter_number}
+                  key={node.chapter_number}
+                >
                   <Accordion.Header>{node.name}</Accordion.Header>
                   <Accordion.Body>
                     <ListGroup>
                       {sortedVideosForChapter(videos, node.chapter_number).map(
                         (video) => (
-                          <ListGroup.Item>
+                          <ListGroup.Item key={video.node.id}>
                             <Container onClick={() => setSelectedVideo(video)}>
                               <Button variant="light">{video.node.name}</Button>
                             </Container>
