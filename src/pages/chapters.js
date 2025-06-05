@@ -2,7 +2,7 @@ import * as React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Footer from "../components/footer";
 import NavBar from "../components/navBar";
-import { graphql } from "gatsby";
+
 import {
   Accordion,
   Button,
@@ -12,6 +12,7 @@ import {
   Row,
 } from "react-bootstrap";
 import styled from "styled-components";
+import { graphql } from "gatsby";
 
 const StyledContainer = styled(Container)`
   margin-top: 100px;
@@ -40,14 +41,16 @@ const sortedVideosForChapter = (videos, chapter_number) =>
     .sort((a, b) => a.node.episode - b.node.episode);
 
 const Chapters = ({ data }) => {
-  const chapters = data?.allMongodbPythonsinhalaChapter.edges;
-  const videos = data?.allMongodbPythonsinhalaVideo.edges;
+  const chapters = data.allChaptersJson.edges;
+  const videos = data.allVideosJson.edges;
   const firstVideo = videos.filter(
     (video) => video.node.chapter_number === 0 && video.node.episode === 0,
   );
   const sortedChapters = chapters.toSorted(
     (a, b) => a.node.chapter_number - b.node.chapter_number,
   );
+  console.log(JSON.stringify(chapters));
+  console.log(JSON.stringify(videos));
   const [selectedVideo, setSelectedVideo] = React.useState(firstVideo[0]);
   return (
     <>
@@ -99,9 +102,9 @@ export default Chapters;
 
 export const Head = () => <title>PythonSinhala: Chapters</title>;
 
-export const mongoCloudVideosQueryAndMongoCloudChaptersQuery = graphql`
-  query MongoCloudChaptersAndVideoQuery {
-    allMongodbPythonsinhalaChapter {
+export const chapterAndVideoQuery = graphql`
+  query ChapterAndVideoQuery {
+    allChaptersJson {
       edges {
         node {
           id
@@ -111,7 +114,7 @@ export const mongoCloudVideosQueryAndMongoCloudChaptersQuery = graphql`
       }
     }
 
-    allMongodbPythonsinhalaVideo {
+    allVideosJson {
       edges {
         node {
           id

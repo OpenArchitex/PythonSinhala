@@ -1,10 +1,6 @@
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
-require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
-});
-
 module.exports = {
   siteMetadata: {
     title: `Python Sinhala`,
@@ -24,6 +20,7 @@ module.exports = {
     },
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+    "gatsby-transformer-json",
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -33,24 +30,12 @@ module.exports = {
       __key: "images",
     },
     {
-      resolve: `gatsby-source-mongodb`,
+      resolve: "gatsby-source-filesystem",
       options: {
-        server: {
-          address: process.env.DB_SERVER_ADDRESS,
-          port: process.env.DB_SERVER_PORT,
-        },
-        auth: {
-          user: process.env.DB_USER,
-          password: process.env.DB_PASSWORD,
-        },
-        dbName: process.env.DB_NAME,
-        extraParams: {
-          authSource: "admin",
-          rewrites: true,
-          ssl: true,
-        },
-        collection: [`chapter`, `video`],
+        name: "data",
+        path: "./src/data/",
       },
+      __key: "data",
     },
   ],
 };
